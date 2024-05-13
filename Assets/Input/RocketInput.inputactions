@@ -1,0 +1,51 @@
+{
+    "name": "RocketInput",
+    "maps": [
+        {
+            "name": "Rocket",
+            "id": "6475517f-8672-4f2c-ad7e-b3e38e310ef4",
+            "actions": [
+                {
+                    "name": "Boost",
+                    "type": "Button",
+                    "id": "21072723-8274-4d34-840a-8c17c3cb5472",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "577e9f4d-bd25-4847-8d6a-1f1dcbc2ba20",
+                    "path": "<Keyboard>/space",
+                    "interactions": "MultiTap(tapDelay=0.75)",
+                    "processors": "",
+                    "groups": "New control scheme",
+                    "action": "Boost",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "New control scheme",
+            "bindingGroup": "New control scheme",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
