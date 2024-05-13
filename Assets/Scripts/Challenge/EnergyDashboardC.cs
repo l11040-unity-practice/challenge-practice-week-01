@@ -13,6 +13,6 @@ public class EnergyDashboardC : MonoBehaviour
 
     private void useEnergy(float energy)
     {
-        fillBar.fillAmount -= ((energy) / energySystem.MaxFuel / 100f);
+        fillBar.fillAmount = energySystem.Fuel / energySystem.MaxFuel;
     }
 }

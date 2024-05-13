@@ -6,7 +6,7 @@ public class EnergySystemC : MonoBehaviour
     public event Action<float> OnEnergyChanged;
     public float MaxFuel { get; private set; } = 10f;
     public float Fuel { get; private set; } = 10f;
-    
+
     public bool UseEnergy(float amount)
     {
         if (Fuel < amount) return false;
@@ -16,6 +16,7 @@ public class EnergySystemC : MonoBehaviour
 
     private void Update()
     {
+        if (Fuel >= MaxFuel) return;
         Fuel += Time.deltaTime;
         OnEnergyChanged?.Invoke(Fuel);
     }

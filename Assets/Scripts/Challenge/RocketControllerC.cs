@@ -35,6 +35,9 @@ public class RocketControllerC : MonoBehaviour
     // private void OnBoost...
     private void OnBoost(InputValue value)
     {
-        Debug.Log("탭");
+        if (_energySystem.UseEnergy(ENERGY_BURST))
+        {
+            _rocketMovement.ApplyBoost();
+        }
     }
 }
