@@ -11,7 +11,7 @@ public class RocketMovementC : MonoBehaviour
     private float highScore = -1;
 
     public static Action<float> OnHighScoreChanged;
-    
+
     private void Awake()
     {
         _rb2d = GetComponent<Rigidbody2D>();
