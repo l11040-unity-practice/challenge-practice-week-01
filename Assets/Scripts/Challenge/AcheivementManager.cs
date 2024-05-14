@@ -26,7 +26,7 @@ public class AchievementManager : MonoBehaviour
         if (height >= achievements[currentThresholdIndex].threshold)
         {
             currentThresholdIndex++;
-            // TODO 업적 추가 실행
+            achievementView.UnlockAchievement(achievements[currentThresholdIndex].threshold);
         }
     }
 }
