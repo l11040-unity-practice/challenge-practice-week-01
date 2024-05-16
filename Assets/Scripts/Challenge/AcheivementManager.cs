@@ -25,8 +25,8 @@ public class AchievementManager : MonoBehaviour
     {
         if (height >= achievements[currentThresholdIndex].threshold)
         {
-            currentThresholdIndex++;
             achievementView.UnlockAchievement(achievements[currentThresholdIndex].threshold);
+            currentThresholdIndex++;
         }
     }
 }
