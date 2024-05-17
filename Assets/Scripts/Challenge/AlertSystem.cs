@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class AlertSystem : MonoBehaviour
 {
@@ -24,6 +25,44 @@ public class AlertSystem : MonoBehaviour
 
     private void CheckAlert()
     {
-        // 주변 반경의 소행성들을 확인하고 이를 감지하여 Alert를 발생시킴(isBlinking -> true)
+        LayerMask mask = LayerMask.GetMask("Aesteriod");
+        Collider2D[] targets = Physics2D.OverlapCircleAll(transform.position, radius, mask);
+
+        if (targets.Length == 0)
+        {
+            animator.SetBool(blinking, false);
+            return;
+        }
+
+        foreach (var target in targets)
+        {
+            Vector2 directionToTarget = target.transform.position - transform.position;
+            directionToTarget.Normalize();
+
+            Vector2 forward = transform.up;
+            float dotProduct = Vector2.Dot(forward, directionToTarget);
+
+            float angle = Mathf.Acos(dotProduct) * Mathf.Rad2Deg;
+            if (angle < fov / 2f)
+            {
+                animator.SetBool(blinking, true);
+                return;
+            }
+        }
+
+        animator.SetBool(blinking, false);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, radius);
+
+        Vector3 fovLine1 = Quaternion.Euler(0, 0, fov / 2) * transform.up * radius;
+        Vector3 fovLine2 = Quaternion.Euler(0, 0, -fov / 2) * transform.up * radius;
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawLine(transform.position, transform.position + fovLine1);
+        Gizmos.DrawLine(transform.position, transform.position + fovLine2);
     }
 }
