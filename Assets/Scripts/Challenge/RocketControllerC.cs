@@ -29,6 +29,19 @@ public class RocketControllerC : MonoBehaviour
 
     // OnMove 구현
     // private void OnMove...
+    private void OnMove(InputValue value)
+    {
+        Vector2 direction = value.Get<Vector2>();
+        if (direction != null && direction.magnitude > 0)
+        {
+            _movementDirection = direction.x;
+            _isMoving = true;
+        }
+        else
+        {
+            _isMoving = false;
+        }
+    }
 
 
     // OnBoost 구현
