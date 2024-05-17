@@ -5,6 +5,7 @@ public class AlertSystem : MonoBehaviour
 {
     // fov가 45라면 45도 각도안에 있는 aesteriod를 인식할 수 있음.
     [SerializeField] private float fov = 45f;
+    private float cosFov;
     // radius가 10이라면 반지름 10 범위에서 aesteriod들을 인식할 수 있음.
     [SerializeField] private float radius = 10f;
     private float alertThreshold;
@@ -16,6 +17,7 @@ public class AlertSystem : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         // FOV를 라디안으로 변환하고 코사인 값을 계산
+        cosFov = MathF.Cos(fov * Mathf.Deg2Rad / 2);
     }
 
     private void Update()
@@ -41,9 +43,7 @@ public class AlertSystem : MonoBehaviour
 
             Vector2 forward = transform.up;
             float dotProduct = Vector2.Dot(forward, directionToTarget);
-
-            float angle = Mathf.Acos(dotProduct) * Mathf.Rad2Deg;
-            if (angle < fov / 2f)
+            if (dotProduct >= cosFov)
             {
                 animator.SetBool(blinking, true);
                 return;
